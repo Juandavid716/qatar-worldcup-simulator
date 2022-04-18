@@ -1,0 +1,43 @@
+{
+  "env": {
+    "browser": true, // Browser global variables like `window` etc.
+    "commonjs": true, // CommonJS global variables and CommonJS scoping.Allows require, exports and module.
+    "es6": true, // Enable all ECMAScript 6 features except for modules.
+    "jest": true, // Jest global variables like `it` etc.
+    "node": true // Defines things like process.env when generating through node
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jest/recommended",
+    "plugin:testing-library/react",
+    "eslint-config-prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "quotes": ["warn", "single"],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/prop-types": "off"
+  }
+}
