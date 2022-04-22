@@ -12,6 +12,7 @@
 	"dependencies": {
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
+		"react-inlinesvg": "^3.0.0",
 		"sass": "^1.50.1"
 	},
 	"devDependencies": {
