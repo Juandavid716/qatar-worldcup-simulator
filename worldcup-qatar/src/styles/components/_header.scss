@@ -1,0 +1,42 @@
+.header {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.logo {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	padding-top: 24px;
+
+	svg {
+		width: 155px;
+		height: 150px;
+	}
+}
+.titleContainer {
+	.content {
+		position: relative;
+		top: 50%;
+	}
+
+	h1 {
+		display: flex;
+		flex-direction: row;
+		font-size: 2rem;
+	}
+	h1:before,
+	h1:after {
+		content: '';
+		flex: 1 1;
+		border-bottom: 1px solid;
+		margin: auto;
+	}
+	h1:before {
+		margin-right: 10px;
+	}
+	h1:after {
+		margin-left: 10px;
+	}
+}
