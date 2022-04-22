@@ -1,0 +1,34 @@
+[
+	{
+		"group": "A",
+		"countries": ["qa", "ecu", "sen", "nl"]
+	},
+	{
+		"group": "B",
+		"countries": ["ing", "irn", "usa", "?"]
+	},
+	{
+		"group": "c",
+		"countries": ["arg", "sau", "mex", "pol"]
+	},
+	{
+		"group": "d",
+		"countries": ["fra", "?", "din", "tun"]
+	},
+	{
+		"group": "e",
+		"countries": ["esp", "?", "ale", "jap"]
+	},
+	{
+		"group": "f",
+		"countries": ["bel", "can", "mar", "cro"]
+	},
+	{
+		"group": "g",
+		"countries": ["bra", "ser", "sui", "cam"]
+	},
+	{
+		"group": "h",
+		"countries": ["por", "gha", "uru", "kor"]
+	}
+]
