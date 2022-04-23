@@ -1,34 +1,42 @@
 [
 	{
 		"group": "A",
-		"countries": ["qa", "ecu", "sen", "nl"]
+		"countries": ["qa", "ecu", "sen", "nl"],
+		"color": "#32a852"
 	},
 	{
 		"group": "B",
-		"countries": ["ing", "irn", "usa", "?"]
+		"countries": ["ing", "irn", "usa", "uk"],
+		"color": "#3277a8"
 	},
 	{
-		"group": "c",
-		"countries": ["arg", "sau", "mex", "pol"]
+		"group": "C",
+		"countries": ["arg", "sau", "mex", "pol"],
+		"color": "#5832a8"
 	},
 	{
-		"group": "d",
-		"countries": ["fra", "?", "din", "tun"]
+		"group": "D",
+		"countries": ["fra", "uk", "din", "tun"],
+		"color": "#8dc43b"
 	},
 	{
-		"group": "e",
-		"countries": ["esp", "?", "ale", "jap"]
+		"group": "E",
+		"countries": ["esp", "uk", "ale", "jap"],
+		"color": "#c46b3b"
 	},
 	{
-		"group": "f",
-		"countries": ["bel", "can", "mar", "cro"]
+		"group": "F",
+		"countries": ["bel", "can", "mar", "cro"],
+		"color": "#c43b66"
 	},
 	{
-		"group": "g",
-		"countries": ["bra", "ser", "sui", "cam"]
+		"group": "G",
+		"countries": ["bra", "ser", "sui", "cam"],
+		"color": "#3bc4b4"
 	},
 	{
-		"group": "h",
-		"countries": ["por", "gha", "uru", "kor"]
+		"group": "H",
+		"countries": ["por", "gha", "uru", "kor"],
+		"color": "#3b3fc4"
 	}
 ]

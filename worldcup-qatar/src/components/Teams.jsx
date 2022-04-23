@@ -1,5 +1,6 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
+import Group from './Group';
+import countries from '../assets/data/countries.json';
 
 const Teams = () => {
 	return (
@@ -7,12 +8,18 @@ const Teams = () => {
 			<section className='headline'>
 				<article>FASE DE GRUPOS</article>
 			</section>
-			<SVG
-				src={`/src/assets/images/${'fifaLogo'}.svg`}
-				width={200}
-				height='150px'
-				title='Menu'
-			/>
+
+			<section className='groups'>
+				{countries.map(country => {
+					return (
+						<Group
+							color={country.color}
+							group={country.group}
+							countries={country.countries}
+						/>
+					);
+				})}
+			</section>
 		</>
 	);
 };
