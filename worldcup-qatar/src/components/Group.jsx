@@ -9,7 +9,7 @@ const Group = ({ color, group, countries }) => {
 			<div className='countries'>
 				{countries.map(country => {
 					return (
-						<div className='country'>
+						<div className='country' key={country}>
 							<div className='countryItem'>
 								<img
 									src={`/src/assets/images/countries/${country}.png`}

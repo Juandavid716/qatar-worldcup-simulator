@@ -13,6 +13,7 @@ const Teams = () => {
 				{countries.map(country => {
 					return (
 						<Group
+							key={country.group}
 							color={country.color}
 							group={country.group}
 							countries={country.countries}
