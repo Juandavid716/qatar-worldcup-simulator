@@ -1,4 +1,5 @@
 import React from 'react';
+import Team from './Team';
 
 const Group = ({ color, group, countries }) => {
 	return (
@@ -7,17 +8,11 @@ const Group = ({ color, group, countries }) => {
 				<div className='letter'>{group}</div>
 			</div>
 			<div className='countries'>
-				{countries.map(country => {
+				{countries.map(team => {
 					return (
-						<div className='country' key={country}>
+						<div className='country' key={team.id}>
 							<div className='countryItem'>
-								<img
-									src={`/src/assets/images/countries/${country}.png`}
-									width={50}
-									height='40'
-									title={country}
-								/>
-								<span className='countryName'>{country.toUpperCase()}</span>
+								<Team team={team} type={group} />
 							</div>
 						</div>
 					);

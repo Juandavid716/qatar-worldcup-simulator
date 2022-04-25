@@ -1,42 +1,188 @@
 [
 	{
+		"id": 1,
 		"group": "A",
-		"countries": ["qa", "ecu", "sen", "nl"],
+		"countries": [
+			{
+				"id": 11,
+				"country": "qa"
+			},
+			{
+				"id": 12,
+				"country": "ecu"
+			},
+			{
+				"id": 13,
+				"country": "sen"
+			},
+			{
+				"id": 14,
+				"country": "nl"
+			}
+		],
 		"color": "#32a852"
 	},
 	{
+		"id": 2,
 		"group": "B",
-		"countries": ["ing", "irn", "usa", "uk"],
+		"countries": [
+			{
+				"id": 21,
+				"country": "ing"
+			},
+			{
+				"id": 22,
+				"country": "irn"
+			},
+			{
+				"id": 23,
+				"country": "usa"
+			},
+			{
+				"id": 24,
+				"country": "uk"
+			}
+		],
 		"color": "#3277a8"
 	},
 	{
+		"id": 3,
 		"group": "C",
-		"countries": ["arg", "sau", "mex", "pol"],
+		"countries": [
+			{
+				"id": 31,
+				"country": "arg"
+			},
+			{
+				"id": 32,
+				"country": "sau"
+			},
+			{
+				"id": 33,
+				"country": "mex"
+			},
+			{
+				"id": 34,
+				"country": "pol"
+			}
+		],
+
 		"color": "#5832a8"
 	},
 	{
+		"id": 4,
 		"group": "D",
-		"countries": ["fra", "uk", "din", "tun"],
+		"countries": [
+			{
+				"id": 41,
+				"country": "fra"
+			},
+			{
+				"id": 42,
+				"country": "uk"
+			},
+			{
+				"id": 43,
+				"country": "din"
+			},
+			{
+				"id": 44,
+				"country": "tun"
+			}
+		],
 		"color": "#8dc43b"
 	},
 	{
+		"id": 5,
 		"group": "E",
-		"countries": ["esp", "uk", "ale", "jap"],
+		"countries": [
+			{
+				"id": 51,
+				"country": "esp"
+			},
+			{
+				"id": 52,
+				"country": "uk"
+			},
+			{
+				"id": 53,
+				"country": "ale"
+			},
+			{
+				"id": 54,
+				"country": "jap"
+			}
+		],
+
 		"color": "#c46b3b"
 	},
 	{
+		"id": 6,
 		"group": "F",
-		"countries": ["bel", "can", "mar", "cro"],
+		"countries": [
+			{
+				"id": 61,
+				"country": "bel"
+			},
+			{
+				"id": 62,
+				"country": "can"
+			},
+			{
+				"id": 63,
+				"country": "mar"
+			},
+			{
+				"id": 64,
+				"country": "cro"
+			}
+		],
 		"color": "#c43b66"
 	},
 	{
+		"id": 7,
 		"group": "G",
-		"countries": ["bra", "ser", "sui", "cam"],
+		"countries": [
+			{
+				"id": 71,
+				"country": "bra"
+			},
+			{
+				"id": 72,
+				"country": "ser"
+			},
+			{
+				"id": 73,
+				"country": "sui"
+			},
+			{
+				"id": 74,
+				"country": "cam"
+			}
+		],
 		"color": "#3bc4b4"
 	},
 	{
+		"id": 8,
 		"group": "H",
-		"countries": ["por", "gha", "uru", "kor"],
+		"countries": [
+			{
+				"id": 81,
+				"country": "por"
+			},
+			{
+				"id": 82,
+				"country": "gha"
+			},
+			{
+				"id": 83,
+				"country": "uru"
+			},
+			{
+				"id": 84,
+				"country": "kor"
+			}
+		],
 		"color": "#3b3fc4"
 	}
 ]
