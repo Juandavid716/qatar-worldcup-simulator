@@ -6,14 +6,22 @@ import countries from '../assets/data/countries.json';
 
 const Teams = () => {
 	const [dustbins, setDustbins] = useState([
-		{ accepts: ['A'], lastDroppedItem: [] },
-		{ accepts: ['B'], lastDroppedItem: [] },
-		{ accepts: ['C'], lastDroppedItem: [] },
-		{ accepts: ['D'], lastDroppedItem: [] },
-		{ accepts: ['E'], lastDroppedItem: [] },
-		{ accepts: ['F'], lastDroppedItem: [] },
-		{ accepts: ['G'], lastDroppedItem: [] },
-		{ accepts: ['H'], lastDroppedItem: [] },
+		{ accepts: ['A'], lastDroppedItem: null },
+		{ accepts: ['A'], lastDroppedItem: null },
+		{ accepts: ['B'], lastDroppedItem: null },
+		{ accepts: ['B'], lastDroppedItem: null },
+		{ accepts: ['C'], lastDroppedItem: null },
+		{ accepts: ['C'], lastDroppedItem: null },
+		{ accepts: ['D'], lastDroppedItem: null },
+		{ accepts: ['D'], lastDroppedItem: null },
+		{ accepts: ['E'], lastDroppedItem: null },
+		{ accepts: ['E'], lastDroppedItem: null },
+		{ accepts: ['F'], lastDroppedItem: null },
+		{ accepts: ['F'], lastDroppedItem: null },
+		{ accepts: ['G'], lastDroppedItem: null },
+		{ accepts: ['G'], lastDroppedItem: null },
+		{ accepts: ['H'], lastDroppedItem: null },
+		{ accepts: ['H'], lastDroppedItem: null },
 	]);
 
 	const [droppedBoxNames, setDroppedBoxNames] = useState([]);
@@ -28,7 +36,7 @@ const Teams = () => {
 				update(dustbins, {
 					[index]: {
 						lastDroppedItem: {
-							$splice: [[0, 0, item]],
+							$set: item,
 						},
 					},
 				})
@@ -36,8 +44,6 @@ const Teams = () => {
 		},
 		[droppedBoxNames, dustbins]
 	);
-
-	useEffect(() => {}, [droppedBoxNames]);
 
 	return (
 		<>
@@ -59,40 +65,23 @@ const Teams = () => {
 				})}
 			</section>
 
-			<div style={{ overflow: 'hidden', clear: 'both' }}>
+			<section className='headline'>
+				<article>CLASIFICADOS</article>
+			</section>
+
+			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
 				{dustbins.map(({ accepts, lastDroppedItem }, index) => (
-					<Dustbin
-						accept={accepts}
-						lastDroppedItem={lastDroppedItem}
-						onDrop={item => handleDrop(index, item)}
-						key={index}
-					/>
+					<div className='dustbinContainer' key={index}>
+						<Dustbin
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item => handleDrop(index, item)}
+							key={index}
+							index={index}
+						/>
+					</div>
 				))}
 			</div>
-			{/* <div
-				className='Board'
-				ref={drop}
-				style={{
-					background: 'white',
-					height: '200px',
-					width: '200px',
-					border: isOver ? '5px solid pink' : '0px',
-				}}
-			>
-				{board.map(item => {
-					return (
-						<div className='group' key={item.id}>
-							<img
-								src={`/src/assets/images/countries/${item.country}.png`}
-								width={50}
-								height='40'
-								title={'xd'}
-							/>
-							<span className='countryName'>{item.country.toUpperCase()}</span>
-						</div>
-					);
-				})}
-			</div> */}
 		</>
 	);
 };

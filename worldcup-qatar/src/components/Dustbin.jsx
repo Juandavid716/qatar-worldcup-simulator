@@ -1,16 +1,20 @@
 import { memo } from 'react';
 import { useDrop } from 'react-dnd';
 const style = {
-	height: '80px',
-	width: '150px',
+	height: '40px',
+	width: '50px',
 	color: 'white',
-	marginRight: '10px',
 	textAlign: 'center',
 	fontSize: '1rem',
 	lineHeight: 'normal',
 	float: 'left',
 };
-const Dustbin = memo(function Dustbin({ accept, lastDroppedItem, onDrop }) {
+const Dustbin = memo(function Dustbin({
+	accept,
+	lastDroppedItem,
+	onDrop,
+	index,
+}) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
 		drop: onDrop,
@@ -19,6 +23,7 @@ const Dustbin = memo(function Dustbin({ accept, lastDroppedItem, onDrop }) {
 			canDrop: monitor.canDrop(),
 		}),
 	});
+	console.log(lastDroppedItem);
 	const isActive = isOver && canDrop;
 	let backgroundColor = '#222';
 	if (isActive) {
@@ -27,28 +32,29 @@ const Dustbin = memo(function Dustbin({ accept, lastDroppedItem, onDrop }) {
 		backgroundColor = 'darkkhaki';
 	}
 	return (
-		<div
-			ref={drop}
-			style={{ ...style, backgroundColor }}
-			data-testid='dustbin'
-			className='dropZone'
-		>
-			{lastDroppedItem.length > 0 ? (
-				lastDroppedItem.map(item => {
-					return (
-						<div className='' key={item.id}>
-							<img
-								src={`/src/assets/images/countries/${item.country}.png`}
-								width={50}
-								height='40'
-								title={'xd'}
-							/>
-							<span className='countryName'>{item.country.toUpperCase()}</span>
-						</div>
-					);
-				})
+		<div ref={drop} data-testid='dustbin' className='dropZone'>
+			{lastDroppedItem ? (
+				<div className='qualifiedCountry'>
+					<img
+						src={`/src/assets/images/countries/${lastDroppedItem.country}.png`}
+						width={50}
+						height='40'
+						title={'xd'}
+						key={lastDroppedItem.id}
+					/>
+
+					<p className='qualifiedText'>
+						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
+					</p>
+				</div>
 			) : (
-				<></>
+				<div className='qualifiedCountry'>
+					<div style={{ width: 50, height: 40, backgroundColor }} />
+
+					<p className='qualifiedText'>
+						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
+					</p>
+				</div>
 			)}
 		</div>
 	);

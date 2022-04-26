@@ -1,0 +1,18 @@
+.groups {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	margin-top: 20px;
+}
+
+.qualified {
+	overflow: hidden;
+	clear: both;
+	display: grid;
+	grid-template-columns: repeat(15, 1fr);
+	grid-auto-flow: column;
+	grid-gap: 9px;
+	margin-top: 27px;
+	margin-left: 12px;
+	margin-right: 11px;
+	justify-items: center;
+}
