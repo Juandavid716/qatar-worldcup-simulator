@@ -32,15 +32,22 @@ const Teams = () => {
 			setDroppedBoxNames(
 				update(droppedBoxNames, country ? { $push: [country] } : { $push: [] })
 			);
-			setDustbins(
-				update(dustbins, {
-					[index]: {
-						lastDroppedItem: {
-							$set: item,
+
+			if (
+				dustbins[index].lastDroppedItem !== item &&
+				dustbins[index + 1].lastDroppedItem !== item &&
+				dustbins[index - 1]?.lastDroppedItem !== item
+			) {
+				setDustbins(
+					update(dustbins, {
+						[index]: {
+							lastDroppedItem: {
+								$set: item,
+							},
 						},
-					},
-				})
-			);
+					})
+				);
+			}
 		},
 		[droppedBoxNames, dustbins]
 	);

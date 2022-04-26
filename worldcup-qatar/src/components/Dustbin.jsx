@@ -23,7 +23,7 @@ const Dustbin = memo(function Dustbin({
 			canDrop: monitor.canDrop(),
 		}),
 	});
-	console.log(lastDroppedItem);
+
 	const isActive = isOver && canDrop;
 	let backgroundColor = '#222';
 	if (isActive) {
