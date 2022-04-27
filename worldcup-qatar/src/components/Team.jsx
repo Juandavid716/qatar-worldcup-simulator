@@ -22,9 +22,9 @@ const Team = ({ team, type }) => {
 				width={50}
 				height='40'
 				title={country}
-				style={{ border: isDragging ? '5px solid pink' : '0px' }}
+				style={{ border: isDragging ? '5px solid white' : '0px' }}
 			/>
-			<span className='countryName'>{country.toUpperCase()}</span>
+			<span className='countryName'>{country}</span>
 		</>
 	);
 };

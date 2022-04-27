@@ -1,12 +1,11 @@
 import { memo } from 'react';
-import { useDrop, useDrag } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 
-const Dustbin = memo(function Dustbin({
+const Qualified = memo(function Qualified({
 	accept,
 	lastDroppedItem,
 	onDrop,
 	index,
-	typeName,
 }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
@@ -17,13 +16,6 @@ const Dustbin = memo(function Dustbin({
 		}),
 	});
 
-	const [{ isDragging }, drag] = useDrag(() => ({
-		type: 'qualified' + accept,
-		collect: monitor => ({
-			isDragging: !!monitor.isDragging(),
-		}),
-	}));
-
 	const isActive = isOver && canDrop;
 	let backgroundColor = '#222';
 	if (isActive) {
@@ -31,8 +23,6 @@ const Dustbin = memo(function Dustbin({
 	} else if (canDrop) {
 		backgroundColor = 'darkkhaki';
 	}
-
-	console.log(lastDroppedItem);
 	return (
 		<div ref={drop} data-testid='dustbin' className='dropZone'>
 			{lastDroppedItem ? (
@@ -64,4 +54,4 @@ const Dustbin = memo(function Dustbin({
 	);
 });
 
-export default Dustbin;
+export default Qualified;

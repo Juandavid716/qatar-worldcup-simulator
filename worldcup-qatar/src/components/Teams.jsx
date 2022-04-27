@@ -24,18 +24,19 @@ const Teams = () => {
 		{ accepts: ['H'], lastDroppedItem: null },
 	]);
 
-	const [droppedBoxNames, setDroppedBoxNames] = useState([]);
+	const [qualified, setQualified] = useState([
+		{ accepts: ['qualifiedA'], lastDroppedItem: null },
+		{ accepts: ['qualifiedB'], lastDroppedItem: null },
+		{ accepts: ['qualifiedC'], lastDroppedItem: null },
+		{ accepts: ['qualifiedD'], lastDroppedItem: null },
+		{ accepts: ['qualifiedE'], lastDroppedItem: null },
+	]);
 
 	const handleDrop = useCallback(
 		(index, item) => {
-			const { country } = item;
-			setDroppedBoxNames(
-				update(droppedBoxNames, country ? { $push: [country] } : { $push: [] })
-			);
-
 			if (
 				dustbins[index].lastDroppedItem !== item &&
-				dustbins[index + 1].lastDroppedItem !== item &&
+				dustbins[index + 1]?.lastDroppedItem !== item &&
 				dustbins[index - 1]?.lastDroppedItem !== item
 			) {
 				setDustbins(
@@ -49,7 +50,14 @@ const Teams = () => {
 				);
 			}
 		},
-		[droppedBoxNames, dustbins]
+		[dustbins]
+	);
+
+	const handleQualified = useCallback(
+		(index, item) => {
+			console.log(index, item);
+		},
+		[qualified]
 	);
 
 	return (
@@ -81,6 +89,24 @@ const Teams = () => {
 					<div className='dustbinContainer' key={index}>
 						<Dustbin
 							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item => handleDrop(index, item)}
+							key={index}
+							index={index}
+						/>
+					</div>
+				))}
+			</div>
+
+			<section className='headline'>
+				<article>OCTAVOS DE FINAL</article>
+			</section>
+
+			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
+				{dustbins.map(({ accepts, lastDroppedItem }, index) => (
+					<div className='dustbinContainer' key={index}>
+						<Dustbin
+							accept={accepts + ' '}
 							lastDroppedItem={lastDroppedItem}
 							onDrop={item => handleDrop(index, item)}
 							key={index}
