@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
+import { isOdd } from '../helpers/compareArrays';
 
 const Dustbin = memo(function Dustbin({
 	accept,
@@ -18,9 +19,11 @@ const Dustbin = memo(function Dustbin({
 		}),
 	});
 
+	const newIndex = isOdd(index) ? index : index - 1;
+
 	const [{ isDragging }, drag] = useDrag(
 		() => ({
-			type: 'qualifed' + accept,
+			type: `${newIndex}` + `${newIndex + 1}`,
 			item: lastDroppedItem,
 			collect: monitor => ({
 				isDragging: !!monitor.isDragging(),
@@ -53,10 +56,12 @@ const Dustbin = memo(function Dustbin({
 						title={lastDroppedItem.country}
 						key={lastDroppedItem.id}
 					/>
-					{!isQualified && (
+					{!isQualified ? (
 						<p className='qualifiedText'>
 							{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
 						</p>
+					) : (
+						<p className='countryName'>{lastDroppedItem.country}</p>
 					)}
 				</div>
 			) : (

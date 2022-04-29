@@ -2,7 +2,7 @@ const compareArrays = (array, itemToCompare, index, item) => {
 	const copyArray = [...array];
 	const arr = Object.entries(array);
 	let items = [];
-	console.log(index);
+
 	for (let [key] of arr) {
 		let element = arr[key];
 
@@ -27,9 +27,6 @@ const compareArrays = (array, itemToCompare, index, item) => {
 			items[1][0].lastDroppedItem = item;
 		}
 	}
-
-	console.log(copyArray);
-
 	return copyArray;
 };
 

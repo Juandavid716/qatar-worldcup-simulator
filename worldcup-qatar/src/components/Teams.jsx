@@ -1,9 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import update from 'immutability-helper';
 import Group from './Group';
 import Dustbin from './Dustbin';
 import countries from '../assets/data/countries.json';
-import Qualified from './Qualified';
 import { compareArrays } from '../helpers/compareArrays';
 
 const Teams = () => {
@@ -46,14 +45,14 @@ const Teams = () => {
 	]);
 
 	const [qualified, setQualified] = useState([
-		{ accepts: ['qualifiedA '], lastDroppedItem: null },
-		{ accepts: ['qualifiedB '], lastDroppedItem: null },
-		{ accepts: ['qualifiedC '], lastDroppedItem: null },
-		{ accepts: ['qualifiedD '], lastDroppedItem: null },
-		{ accepts: ['qualifiedE '], lastDroppedItem: null },
-		{ accepts: ['qualifiedF '], lastDroppedItem: null },
-		{ accepts: ['qualifiedG '], lastDroppedItem: null },
-		{ accepts: ['qualifiedH '], lastDroppedItem: null },
+		{ accepts: ['01'], lastDroppedItem: null },
+		{ accepts: ['23'], lastDroppedItem: null },
+		{ accepts: ['45'], lastDroppedItem: null },
+		{ accepts: ['67'], lastDroppedItem: null },
+		{ accepts: ['89'], lastDroppedItem: null },
+		{ accepts: ['1011'], lastDroppedItem: null },
+		{ accepts: ['1213'], lastDroppedItem: null },
+		{ accepts: ['1415'], lastDroppedItem: null },
 	]);
 
 	const handleDrop = useCallback(
@@ -81,7 +80,7 @@ const Teams = () => {
 		(index, item) => {
 			const result = compareArrays(quarter, dustbins[index], index, item);
 
-			setQuarter(result)
+			setQuarter(result);
 		},
 		[quarter]
 	);
@@ -128,7 +127,6 @@ const Teams = () => {
 			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
 				{dustbins.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='dustbinContainer' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -151,7 +149,6 @@ const Teams = () => {
 			<div className='qualified' style={{ overflow: 'hidden', clear: 'both' }}>
 				{quarter.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='dustbinContainer' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts + ' '}
 							lastDroppedItem={lastDroppedItem}
@@ -173,7 +170,7 @@ const Teams = () => {
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{qualified.map(({ accepts, lastDroppedItem }, index) => (
-					<div key={index}>
+					<div className='quarterTeam' key={index}>
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
