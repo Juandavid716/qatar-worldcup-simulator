@@ -159,18 +159,18 @@ const Teams = () => {
 					</div>
 				))}
 			</div>
-			<div className='quarterText'>
-				<p className='quarterItem'>CUARTOS</p>
-				<p className='quarterItem'>CUARTOS</p>
-				<p className='quarterItem'>CUARTOS</p>
-				<p className='quarterItem'>CUARTOS</p>
+			<div className='separatorText'>
+				<p className='separatorItem'>CUARTOS</p>
+				<p className='separatorItem'>CUARTOS</p>
+				<p className='separatorItem'>CUARTOS</p>
+				<p className='separatorItem'>CUARTOS</p>
 			</div>
 			<div
-				className='quarterTeams'
+				className='separatorTeams'
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{qualified.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='quarterTeam' key={index}>
+					<div className='separatorTeam' key={index}>
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -181,6 +181,11 @@ const Teams = () => {
 						/>
 					</div>
 				))}
+			</div>
+
+			<div className='separatorText separator--modifier--grid'>
+				<p className='separatorItem'>SEMIFINALES</p>
+				<p className='separatorItem'>SEMIFINALES</p>
 			</div>
 		</>
 	);
