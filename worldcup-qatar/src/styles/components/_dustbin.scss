@@ -1,0 +1,23 @@
+.dropZone {
+	display: flex;
+	flex-direction: row;
+}
+.dustbinContainer {
+	&:nth-child(2n):not(:last-child) {
+		border-right: 2px solid white;
+		padding-right: 10px;
+	}
+	&:nth-child(2n + 1) {
+		padding-left: 2px;
+	}
+	.qualifiedCountry {
+		display: flex;
+		flex-direction: column;
+	}
+	.qualifiedText {
+		color: white;
+		text-align: center;
+		font-size: 21px;
+		margin-top: 6px;
+	}
+}
