@@ -6,7 +6,8 @@ const Dustbin = memo(function Dustbin({
 	lastDroppedItem,
 	onDrop,
 	index,
-	typeName,
+	isQualified,
+	isOptional,
 }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
@@ -17,12 +18,16 @@ const Dustbin = memo(function Dustbin({
 		}),
 	});
 
-	const [{ isDragging }, drag] = useDrag(() => ({
-		type: 'qualified' + accept,
-		collect: monitor => ({
-			isDragging: !!monitor.isDragging(),
+	const [{ isDragging }, drag] = useDrag(
+		() => ({
+			type: 'qualifed' + accept,
+			item: lastDroppedItem,
+			collect: monitor => ({
+				isDragging: !!monitor.isDragging(),
+			}),
 		}),
-	}));
+		[lastDroppedItem]
+	);
 
 	const isActive = isOver && canDrop;
 	let backgroundColor = '#222';
@@ -32,7 +37,6 @@ const Dustbin = memo(function Dustbin({
 		backgroundColor = 'darkkhaki';
 	}
 
-	console.log(lastDroppedItem);
 	return (
 		<div ref={drop} data-testid='dustbin' className='dropZone'>
 			{lastDroppedItem ? (
@@ -42,22 +46,28 @@ const Dustbin = memo(function Dustbin({
 						width={50}
 						height='40'
 						ref={drag}
-						style={{ border: isDragging ? '5px solid white' : '0px' }}
+						style={{
+							border: isDragging && !isOptional ? '5px solid white' : '0px',
+							cursor: !isOptional && 'grab',
+						}}
 						title={lastDroppedItem.country}
 						key={lastDroppedItem.id}
 					/>
-
-					<p className='qualifiedText'>
-						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
-					</p>
+					{!isQualified && (
+						<p className='qualifiedText'>
+							{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
+						</p>
+					)}
 				</div>
 			) : (
 				<div className='qualifiedCountry'>
 					<div style={{ width: 50, height: 40, backgroundColor }} />
 
-					<p className='qualifiedText'>
-						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
-					</p>
+					{!isQualified && (
+						<p className='qualifiedText'>
+							{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
+						</p>
+					)}
 				</div>
 			)}
 		</div>

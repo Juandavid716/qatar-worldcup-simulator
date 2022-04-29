@@ -1,12 +1,7 @@
 import { memo } from 'react';
-import { useDrop } from 'react-dnd';
+import { useDrop, useDrag } from 'react-dnd';
 
-const Qualified = memo(function Qualified({
-	accept,
-	lastDroppedItem,
-	onDrop,
-	index,
-}) {
+const Qualified = memo(function Qualified({ accept, lastDroppedItem, onDrop }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
 		drop: onDrop,
@@ -31,23 +26,13 @@ const Qualified = memo(function Qualified({
 						src={`/src/assets/images/countries/${lastDroppedItem.country}.png`}
 						width={50}
 						height='40'
-						ref={drag}
-						style={{ border: isDragging ? '5px solid white' : '0px' }}
 						title={lastDroppedItem.country}
 						key={lastDroppedItem.id}
 					/>
-
-					<p className='qualifiedText'>
-						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
-					</p>
 				</div>
 			) : (
 				<div className='qualifiedCountry'>
 					<div style={{ width: 50, height: 40, backgroundColor }} />
-
-					<p className='qualifiedText'>
-						{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
-					</p>
 				</div>
 			)}
 		</div>

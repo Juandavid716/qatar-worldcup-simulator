@@ -16,3 +16,29 @@
 	margin-right: 11px;
 	justify-items: center;
 }
+
+.quarterTeams {
+	overflow: hidden;
+	clear: both;
+	overflow: hidden;
+	clear: both;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-flow: column;
+	justify-items: center;
+	margin-top: 20px;
+}
+.quarterText {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	margin-top: 23px;
+
+	& .quarterItem {
+		border-radius: 50%;
+		padding: 17px;
+		background: black;
+		box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+			rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+	}
+}

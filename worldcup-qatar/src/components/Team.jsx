@@ -22,7 +22,10 @@ const Team = ({ team, type }) => {
 				width={50}
 				height='40'
 				title={country}
-				style={{ border: isDragging ? '5px solid white' : '0px' }}
+				style={{
+					border: isDragging ? '5px solid white' : '0px',
+					cursor: 'grab',
+				}}
 			/>
 			<span className='countryName'>{country}</span>
 		</>
