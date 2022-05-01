@@ -1,5 +1,6 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
+import checkIndexes from '../helpers/checkIndexes';
 import { isOdd } from '../helpers/compareArrays';
 
 const Dustbin = memo(function Dustbin({
@@ -9,6 +10,7 @@ const Dustbin = memo(function Dustbin({
 	index,
 	isQualified,
 	isOptional,
+	stage,
 }) {
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept,
@@ -18,12 +20,29 @@ const Dustbin = memo(function Dustbin({
 			canDrop: monitor.canDrop(),
 		}),
 	});
+	let newIndex = '';
+	let result;
+	switch (stage) {
+		case 'eight':
+			result = isOdd(index) ? index : index - 1;
+			newIndex = `${result}` + `${result + 1}`;
+			break;
+		case 'quarter':
+			newIndex = checkIndexes(accept, index);
+			break;
 
-	const newIndex = isOdd(index) ? index : index - 1;
+		case 'semifinal':
+			newIndex = checkIndexes(accept, index);
+			break;
+
+		case 'final':
+			//newIndex = checkIndexes(accept, index);
+			break;
+	}
 
 	const [{ isDragging }, drag] = useDrag(
 		() => ({
-			type: `${newIndex}` + `${newIndex + 1}`,
+			type: `${newIndex}`,
 			item: lastDroppedItem,
 			collect: monitor => ({
 				isDragging: !!monitor.isDragging(),
