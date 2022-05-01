@@ -1,5 +1,5 @@
 import React from 'react';
-import FifaLogo from '../assets/images/fifaLogo.svg?component';
+import FifaLogo from '../assets/logo/fifaLogo.svg?component';
 
 const Header = () => {
 	return (

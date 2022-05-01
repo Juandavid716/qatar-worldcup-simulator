@@ -66,7 +66,7 @@ const Dustbin = memo(function Dustbin({
 			{lastDroppedItem ? (
 				<div className='qualifiedCountry'>
 					<img
-						src={`/src/assets/images/countries/${lastDroppedItem.country}.png`}
+						src={`assets/images/countries/${lastDroppedItem.country}.png`}
 						width={50}
 						height='40'
 						ref={drag}
