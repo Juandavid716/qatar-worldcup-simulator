@@ -67,6 +67,10 @@ const Teams = () => {
 		{ accepts: ['89101112131415'], lastDroppedItem: null },
 	]);
 
+	const [winner, setWinner] = useState([
+		{ accepts: ['0123456789101112131415'], lastDroppedItem: null },
+	]);
+
 	const handleDrop = useCallback(
 		(index, item) => {
 			if (
@@ -90,9 +94,15 @@ const Teams = () => {
 
 	const handleQuarter = useCallback(
 		(index, item) => {
-			const result = compareArrays(quarter, dustbins[index], index, item);
+			if (
+				dustbins[index].lastDroppedItem !== item &&
+				dustbins[index + 1]?.lastDroppedItem !== item &&
+				dustbins[index - 1]?.lastDroppedItem !== item
+			) {
+				const result = compareArrays(quarter, dustbins[index], index, item);
 
-			setQuarter(result);
+				setQuarter(result);
+			}
 		},
 		[quarter]
 	);
@@ -181,6 +191,7 @@ const Teams = () => {
 			>
 				{qualified.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
+						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -207,6 +218,7 @@ const Teams = () => {
 			>
 				{semifinal.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
+						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -217,6 +229,50 @@ const Teams = () => {
 							index={index}
 							isQualified={true}
 							stage={'semifinal'}
+						/>
+					</div>
+				))}
+			</div>
+
+			<div className='separatorText separator--modifier--grid--final'>
+				<p className='separatorItem'>FINAL</p>
+			</div>
+
+			<div
+				className='containerTeams containerTeams--modifier--grid--column '
+				style={{ overflow: 'hidden', clear: 'both' }}
+			>
+				{final.map(({ accepts, lastDroppedItem }, index) => (
+					<div className='containerTeam' key={index}>
+						{accepts}
+						<Dustbin
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item => handleFinalStages(index, item, final, setFinal)}
+							key={index}
+							index={index}
+							isQualified={true}
+							stage={'final'}
+						/>
+					</div>
+				))}
+			</div>
+
+			<div
+				className='containerTeams containerTeams--modifier--grid--winner '
+				style={{ overflow: 'hidden', clear: 'both' }}
+			>
+				{winner.map(({ accepts, lastDroppedItem }, index) => (
+					<div className='containerTeam' key={index}>
+						{accepts}
+						<Dustbin
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item => handleFinalStages(index, item, winner, setWinner)}
+							key={index}
+							index={index}
+							isQualified={true}
+							stage={'final'}
 						/>
 					</div>
 				))}
