@@ -18,7 +18,7 @@ const Team = ({ team, type }) => {
 		<>
 			<img
 				ref={drag}
-				src={`/src/assets/images/countries/${country}.png`}
+				src={`assets/images/countries/${country}.png`}
 				width={50}
 				height='40'
 				title={country}

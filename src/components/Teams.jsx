@@ -191,7 +191,6 @@ const Teams = () => {
 			>
 				{qualified.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -218,7 +217,6 @@ const Teams = () => {
 			>
 				{semifinal.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -244,7 +242,6 @@ const Teams = () => {
 			>
 				{final.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
@@ -264,7 +261,6 @@ const Teams = () => {
 			>
 				{winner.map(({ accepts, lastDroppedItem }, index) => (
 					<div className='containerTeam' key={index}>
-						{accepts}
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
