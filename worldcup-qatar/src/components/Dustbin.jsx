@@ -36,9 +36,11 @@ const Dustbin = memo(function Dustbin({
 			break;
 
 		case 'final':
-			//newIndex = checkIndexes(accept, index);
+			newIndex = checkIndexes(accept, index);
 			break;
 	}
+
+	console.log(newIndex, index, accept);
 
 	const [{ isDragging }, drag] = useDrag(
 		() => ({

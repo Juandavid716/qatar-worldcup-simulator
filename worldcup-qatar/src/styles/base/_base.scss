@@ -5,7 +5,7 @@
 
 html,
 body {
-	height: 100vh;
+	height: 100%;
 	width: 100vw;
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
@@ -26,8 +26,9 @@ main {
 
 .layout {
 	width: 1280px;
-	height: 1400px;
+	height: 100%;
 	margin: 20px auto 0;
+	padding-bottom: 60px;
 }
 .headline {
 	background-color: black;

@@ -33,6 +33,10 @@
 .containerTeams--modifier--grid {
 	grid-template-columns: repeat(4, 1fr);
 }
+.containerTeams--modifier--grid--column {
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 60px;
+}
 .separatorText {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -40,11 +44,11 @@
 	margin-top: 23px;
 
 	& .separatorItem {
-		border-radius: 50%;
 		padding: 17px;
 		background: black;
 		box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
 			rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+		font-weight: 400;
 	}
 }
 .countryName {
@@ -56,4 +60,15 @@
 .separator--modifier--grid {
 	grid-template-columns: repeat(2, 1fr);
 	margin-top: 3rem;
+}
+.separator--modifier--grid--final,
+.containerTeams--modifier--grid--winner {
+	grid-template-columns: repeat(1, 1fr);
+	margin-top: 3rem;
+
+	.separatorItem {
+		padding: 30px;
+		width: 300px;
+		text-align: center;
+	}
 }
