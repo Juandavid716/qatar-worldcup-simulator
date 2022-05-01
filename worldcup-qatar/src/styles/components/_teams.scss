@@ -19,7 +19,7 @@
 	padding: 10px;
 }
 
-.separatorTeams {
+.containerTeams {
 	overflow: hidden;
 	clear: both;
 	overflow: hidden;
@@ -29,6 +29,9 @@
 	grid-auto-flow: column;
 	justify-items: center;
 	margin-top: 20px;
+}
+.containerTeams--modifier--grid {
+	grid-template-columns: repeat(4, 1fr);
 }
 .separatorText {
 	display: grid;

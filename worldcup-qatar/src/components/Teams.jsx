@@ -55,6 +55,18 @@ const Teams = () => {
 		{ accepts: ['1415'], lastDroppedItem: null },
 	]);
 
+	const [semifinal, setSemifinal] = useState([
+		{ accepts: ['0123'], lastDroppedItem: null },
+		{ accepts: ['4567'], lastDroppedItem: null },
+		{ accepts: ['891011'], lastDroppedItem: null },
+		{ accepts: ['12131415'], lastDroppedItem: null },
+	]);
+
+	const [final, setFinal] = useState([
+		{ accepts: ['01234567'], lastDroppedItem: null },
+		{ accepts: ['89101112131415'], lastDroppedItem: null },
+	]);
+
 	const handleDrop = useCallback(
 		(index, item) => {
 			if (
@@ -85,20 +97,17 @@ const Teams = () => {
 		[quarter]
 	);
 
-	const handleQualified = useCallback(
-		(index, item) => {
-			setQualified(
-				update(qualified, {
-					[index]: {
-						lastDroppedItem: {
-							$set: item,
-						},
+	const handleFinalStages = useCallback((index, item, array, setState) => {
+		setState(
+			update(array, {
+				[index]: {
+					lastDroppedItem: {
+						$set: item,
 					},
-				})
-			);
-		},
-		[qualified]
-	);
+				},
+			})
+		);
+	}, []);
 
 	return (
 		<>
@@ -155,6 +164,7 @@ const Teams = () => {
 							onDrop={item => handleQuarter(index, item)}
 							key={index}
 							index={index}
+							stage={'eight'}
 						/>
 					</div>
 				))}
@@ -166,18 +176,21 @@ const Teams = () => {
 				<p className='separatorItem'>CUARTOS</p>
 			</div>
 			<div
-				className='separatorTeams'
+				className='containerTeams'
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{qualified.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='separatorTeam' key={index}>
+					<div className='containerTeam' key={index}>
 						<Dustbin
 							accept={accepts}
 							lastDroppedItem={lastDroppedItem}
-							onDrop={item => handleQualified(index, item)}
+							onDrop={item =>
+								handleFinalStages(index, item, qualified, setQualified)
+							}
 							key={index}
 							index={index}
 							isQualified={true}
+							stage={'quarter'}
 						/>
 					</div>
 				))}
@@ -186,6 +199,27 @@ const Teams = () => {
 			<div className='separatorText separator--modifier--grid'>
 				<p className='separatorItem'>SEMIFINALES</p>
 				<p className='separatorItem'>SEMIFINALES</p>
+			</div>
+
+			<div
+				className='containerTeams containerTeams--modifier--grid'
+				style={{ overflow: 'hidden', clear: 'both' }}
+			>
+				{semifinal.map(({ accepts, lastDroppedItem }, index) => (
+					<div className='containerTeam' key={index}>
+						<Dustbin
+							accept={accepts}
+							lastDroppedItem={lastDroppedItem}
+							onDrop={item =>
+								handleFinalStages(index, item, semifinal, setSemifinal)
+							}
+							key={index}
+							index={index}
+							isQualified={true}
+							stage={'semifinal'}
+						/>
+					</div>
+				))}
 			</div>
 		</>
 	);
