@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import update from 'immutability-helper';
 import Group from './Group';
 import Dustbin from './Dustbin';
+import Trophy from '../assets/logo/trophy.png';
 import countries from '../assets/data/countries.json';
 import { compareArrays } from '../helpers/compareArrays';
 
@@ -260,17 +261,23 @@ const Teams = () => {
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{winner.map(({ accepts, lastDroppedItem }, index) => (
-					<div className='containerTeam' key={index}>
-						<Dustbin
-							accept={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => handleFinalStages(index, item, winner, setWinner)}
-							key={index}
-							index={index}
-							isQualified={true}
-							stage={'final'}
-						/>
-					</div>
+					<>
+						<div className='' key={index}>
+							<Dustbin
+								accept={accepts}
+								lastDroppedItem={lastDroppedItem}
+								onDrop={item =>
+									handleFinalStages(index, item, winner, setWinner)
+								}
+								key={index}
+								index={index}
+								isQualified={true}
+								stage={'final'}
+							/>
+							<p className='winner'>GANADOR</p>
+						</div>
+						<img src={Trophy} className='trophy' />
+					</>
 				))}
 			</div>
 		</>

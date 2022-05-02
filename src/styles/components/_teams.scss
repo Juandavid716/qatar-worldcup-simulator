@@ -29,6 +29,38 @@
 	grid-auto-flow: column;
 	justify-items: center;
 	margin-top: 20px;
+
+	& .containerTeam {
+		width: 100%;
+
+		.dropZone {
+			overflow: hidden;
+			text-align: center;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+		}
+		&:nth-child(2n + 1):not(&:last-child) .dropZone:after,
+		&:nth-child(2n) .dropZone:before {
+			background-color: white;
+			content: '';
+			display: inline-block;
+			height: 5px;
+			top: 18px;
+			position: relative;
+			vertical-align: middle;
+			width: 50%;
+		}
+		.dropZone:before {
+			right: 0.5em;
+			margin-left: -50%;
+		}
+
+		.dropZone:after {
+			left: 0.5em;
+			margin-right: -50%;
+		}
+	}
 }
 .containerTeams--modifier--grid {
 	grid-template-columns: repeat(4, 1fr);
@@ -71,4 +103,19 @@
 		width: 300px;
 		text-align: center;
 	}
+}
+.containerTeams--modifier--grid--winner > div {
+	margin-top: 10rem;
+}
+.containerTeams--modifier--grid--winner > div > div {
+	justify-content: center;
+}
+
+.trophy {
+	width: 100px;
+	position: relative;
+	right: 28rem;
+}
+.winner {
+	font-size: 32px;
 }
