@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react';
+import { memo } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
 import checkIndexes from '../helpers/checkIndexes';
 import { isOdd } from '../helpers/compareArrays';
@@ -39,8 +39,6 @@ const Dustbin = memo(function Dustbin({
 			newIndex = checkIndexes(accept, index);
 			break;
 	}
-
-	console.log(newIndex, index, accept);
 
 	const [{ isDragging }, drag] = useDrag(
 		() => ({
@@ -89,10 +87,12 @@ const Dustbin = memo(function Dustbin({
 				<div className='qualifiedCountry'>
 					<div style={{ width: 50, height: 40, backgroundColor }} />
 
-					{!isQualified && (
+					{!isQualified ? (
 						<p className='qualifiedText'>
 							{index % 2 === 0 ? `1°${accept}` : `2°${accept}`}
 						</p>
+					) : (
+						<p className='countryName' style={{ height: 40 }}></p>
 					)}
 				</div>
 			)}

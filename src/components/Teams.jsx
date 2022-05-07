@@ -1,76 +1,84 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 import update from 'immutability-helper';
 import Group from './Group';
 import Dustbin from './Dustbin';
 import Trophy from '../assets/logo/trophy.png';
 import countries from '../assets/data/countries.json';
 import { compareArrays } from '../helpers/compareArrays';
+import {
+	groupStageData,
+	quarterData,
+	qualifiedData,
+	semifinalData,
+	finalData,
+	winnerData,
+} from '../assets/data/identifiers';
+
+function randomInRange(min, max) {
+	return Math.random() * (max - min) + min;
+}
+
+const canvasStyles = {
+	position: 'fixed',
+	pointerEvents: 'none',
+	width: '100%',
+	height: '100%',
+	top: 0,
+	left: 0,
+};
+
+function getAnimationSettings(originXA, originXB) {
+	return {
+		startVelocity: 30,
+		spread: 360,
+		ticks: 60,
+		zIndex: 0,
+		particleCount: 150,
+		origin: {
+			x: randomInRange(originXA, originXB),
+			y: Math.random() - 0.2,
+		},
+	};
+}
 
 const Teams = () => {
-	const [dustbins, setDustbins] = useState([
-		{ accepts: ['A'], lastDroppedItem: null },
-		{ accepts: ['A'], lastDroppedItem: null },
-		{ accepts: ['B'], lastDroppedItem: null },
-		{ accepts: ['B'], lastDroppedItem: null },
-		{ accepts: ['C'], lastDroppedItem: null },
-		{ accepts: ['C'], lastDroppedItem: null },
-		{ accepts: ['D'], lastDroppedItem: null },
-		{ accepts: ['D'], lastDroppedItem: null },
-		{ accepts: ['E'], lastDroppedItem: null },
-		{ accepts: ['E'], lastDroppedItem: null },
-		{ accepts: ['F'], lastDroppedItem: null },
-		{ accepts: ['F'], lastDroppedItem: null },
-		{ accepts: ['G'], lastDroppedItem: null },
-		{ accepts: ['G'], lastDroppedItem: null },
-		{ accepts: ['H'], lastDroppedItem: null },
-		{ accepts: ['H'], lastDroppedItem: null },
-	]);
+	const [dustbins, setDustbins] = useState(groupStageData);
+	const [quarter, setQuarter] = useState(quarterData);
+	const [qualified, setQualified] = useState(qualifiedData);
+	const [semifinal, setSemifinal] = useState(semifinalData);
+	const [final, setFinal] = useState(finalData);
+	const [winner, setWinner] = useState(winnerData);
+	const refAnimationInstance = useRef(null);
+	const [intervalId, setIntervalId] = useState();
 
-	const [quarter, setQuarter] = useState([
-		{ accepts: ['A'], lastDroppedItem: null },
-		{ accepts: ['B'], lastDroppedItem: null },
-		{ accepts: ['C'], lastDroppedItem: null },
-		{ accepts: ['D'], lastDroppedItem: null },
-		{ accepts: ['E'], lastDroppedItem: null },
-		{ accepts: ['F'], lastDroppedItem: null },
-		{ accepts: ['G'], lastDroppedItem: null },
-		{ accepts: ['H'], lastDroppedItem: null },
-		{ accepts: ['B'], lastDroppedItem: null },
-		{ accepts: ['A'], lastDroppedItem: null },
-		{ accepts: ['D'], lastDroppedItem: null },
-		{ accepts: ['C'], lastDroppedItem: null },
-		{ accepts: ['F'], lastDroppedItem: null },
-		{ accepts: ['E'], lastDroppedItem: null },
-		{ accepts: ['H'], lastDroppedItem: null },
-		{ accepts: ['G'], lastDroppedItem: null },
-	]);
+	const getInstance = useCallback(instance => {
+		refAnimationInstance.current = instance;
+	}, []);
 
-	const [qualified, setQualified] = useState([
-		{ accepts: ['01'], lastDroppedItem: null },
-		{ accepts: ['23'], lastDroppedItem: null },
-		{ accepts: ['45'], lastDroppedItem: null },
-		{ accepts: ['67'], lastDroppedItem: null },
-		{ accepts: ['89'], lastDroppedItem: null },
-		{ accepts: ['1011'], lastDroppedItem: null },
-		{ accepts: ['1213'], lastDroppedItem: null },
-		{ accepts: ['1415'], lastDroppedItem: null },
-	]);
+	const nextTickAnimation = useCallback(() => {
+		if (refAnimationInstance.current) {
+			refAnimationInstance.current(getAnimationSettings(0.1, 0.3));
+			refAnimationInstance.current(getAnimationSettings(0.7, 0.9));
+		}
+	}, []);
 
-	const [semifinal, setSemifinal] = useState([
-		{ accepts: ['0123'], lastDroppedItem: null },
-		{ accepts: ['4567'], lastDroppedItem: null },
-		{ accepts: ['891011'], lastDroppedItem: null },
-		{ accepts: ['12131415'], lastDroppedItem: null },
-	]);
+	const startAnimation = useCallback(() => {
+		if (!intervalId) {
+			setIntervalId(setInterval(nextTickAnimation, 400));
+		}
+	}, [intervalId, nextTickAnimation]);
 
-	const [final, setFinal] = useState([
-		{ accepts: ['01234567'], lastDroppedItem: null },
-		{ accepts: ['89101112131415'], lastDroppedItem: null },
-	]);
+	const pauseAnimation = useCallback(() => {
+		clearInterval(intervalId);
+		setIntervalId(null);
+	}, [intervalId]);
 
-	const [winner, setWinner] = useState([
-		{ accepts: ['0123456789101112131415'], lastDroppedItem: null },
-	]);
+	const stopAnimation = useCallback(() => {
+		clearInterval(intervalId);
+		setIntervalId(null);
+		refAnimationInstance.current && refAnimationInstance.current.reset();
+	}, [intervalId]);
 
 	const handleDrop = useCallback(
 		(index, item) => {
@@ -119,6 +127,18 @@ const Teams = () => {
 			})
 		);
 	}, []);
+
+	useEffect(() => {
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, [intervalId]);
+
+	useEffect(() => {
+		if (winner[0].lastDroppedItem !== null) {
+			startAnimation();
+		}
+	}, [winner]);
 
 	return (
 		<>
@@ -255,9 +275,8 @@ const Teams = () => {
 					</div>
 				))}
 			</div>
-
 			<div
-				className='containerTeams containerTeams--modifier--grid--winner '
+				className='containerTeams containerTeams--modifier--grid--winner winner'
 				style={{ overflow: 'hidden', clear: 'both' }}
 			>
 				{winner.map(({ accepts, lastDroppedItem }, index) => (
@@ -280,6 +299,7 @@ const Teams = () => {
 					</>
 				))}
 			</div>
+			<ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
 		</>
 	);
 };

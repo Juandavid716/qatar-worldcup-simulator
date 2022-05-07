@@ -57,7 +57,6 @@ const checkIndexes = (word, index) => {
 		}
 		step = 1;
 	}
-	console.log(step);
 
 	for (let i = 0; i < newWord.length; i = i + step) {
 		let letter = newWord.slice(i, i + step);
