@@ -23,7 +23,7 @@ const Team = ({ team, type }) => {
 				height='40'
 				title={country}
 				style={{
-					border: isDragging ? '5px solid white' : '0px',
+					transform: isDragging ? 'scale(1.2)' : 'scale(1)',
 					cursor: 'grab',
 				}}
 			/>

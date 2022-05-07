@@ -71,7 +71,7 @@ const Dustbin = memo(function Dustbin({
 						height='40'
 						ref={drag}
 						style={{
-							border: isDragging && !isOptional ? '5px solid white' : '0px',
+							transform: isDragging && !isOptional ? 'scale(1.2)' : 'scale(1)',
 							cursor: !isOptional && 'grab',
 						}}
 						title={lastDroppedItem.country}
