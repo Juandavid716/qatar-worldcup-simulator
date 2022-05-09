@@ -18,4 +18,4 @@ With the drag and drop it's possible to choose the confrontations and know your 
 ## Next Features
 
 - Clean results.
-- Allow selected result to be downloaded as an image.
+- Allow selected result to be downloaded as an image. ✅
