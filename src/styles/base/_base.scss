@@ -4,7 +4,8 @@
 }
 
 html,
-body {
+body,
+#root {
 	height: 100%;
 	width: 100vw;
 	background: rgb(2, 0, 36);
@@ -36,4 +37,8 @@ main {
 	text-align: center;
 	padding: 1rem;
 	margin-top: 1.5rem;
+}
+.html2canvas-container {
+	width: 2000px !important;
+	height: 2000px !important;
 }
